@@ -248,8 +248,8 @@ var QueryES = function(messageId, sender, raw_question, question, event, context
 };
 
 var ProcessESResponse = function(messageId, sender, raw_question, hits, event, context, callback) {
-    console.log('Found ' + hits.total + ' matching answers');
-    if (hits.total > 0) {
+    if (typeof hits != "undefined" && "total" in hits && hits.total > 0) {
+        console.log('Found ' + hits.total + ' matching answers');
         console.log('Best score: ' + hits.hits[0]["_score"]);
         if (hits.hits[0]["_score"] < 0.02) {
             // Best scoring answer is below confidence threshold. Send to Slack channel for verification
