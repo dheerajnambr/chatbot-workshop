@@ -134,7 +134,7 @@ var SendFacebookMessage = function(recipient, message, answered, event, context,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': response.length
+            'Content-Length': Buffer.byteLength(response, 'utf8')
         }
     };
     // Set up the request
